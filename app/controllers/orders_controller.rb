@@ -30,6 +30,13 @@ class OrdersController < ApplicationController
         head :no_content
     end
 
+    def update
+        user = find_user
+        order = user.orders.find_by(id: params[:id])
+        show.update(show_params)
+        render json: show, status: :created
+    end
+
     private
     
     def order_params
