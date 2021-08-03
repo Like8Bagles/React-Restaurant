@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
 const Signup = (props) => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [confirmation, setConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState([])
-    const history = useHistory()
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -36,6 +34,7 @@ const Signup = (props) => {
 
     return (
         <div>
+            <h2>Sign Up:</h2>
             <form onSubmit={handleSubmit}>
                 <label>Name:  </label>
                 <input

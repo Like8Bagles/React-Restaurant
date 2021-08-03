@@ -24,15 +24,122 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  font-size: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  -webkit-text-stroke: #000000;
+  color: #000000
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h2 {
+  font-size: 30px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px #333;
+}
+
+h3 {
+  font-size: 25px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px #333;
+}
+
+body {
+  min-height: 100%;
+  min-width: 100%;
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(23,64,139,1) 23%, rgba(255,255,255,1) 50%, rgba(201,8,42,1) 78%, rgba(255,255,255,1) 100%);
+}
+
+button {
+  color: rgb(0, 0, 0);
+  padding: 3px 5px;
+  text-align: center;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.main-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #333;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 15px 20px 18px 18px;
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px #333;
+}
+
+.list {
+  font-size: 18px;
+  columns: 4;
+  column-gap: 50px;
+  margin: 10px;
+  border: 1px solid #333;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 15px 20px 18px 18px;
+  border-radius: 10px;
+  box-shadow: 2px 5px 5px #333;
+}
+
+.menu_items {
+  text-transform: capitalize;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: rgba(105, 105, 105, 0.376);
+  border-radius: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-left: 1rem;
+  position: relative;
+}
+
+.order_items {
+  text-transform: capitalize;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: rgba(105, 105, 105, 0.376);
+  border-radius: 1rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-left: 1rem;
+  position: relative;
+}
+
+section {
+  width: 80vw;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+form {
+  position: relative;
+  flex-direction: column;
+}
+
+form input,
+form textarea {
+  margin-bottom: 0.5rem;
+  width: 30px;
+}
+
+form button[type="submit"] {
+  width: 50px;
+}
+
+.order_name {
+  width: 200px
+}
+
+.price {
+  text
 }

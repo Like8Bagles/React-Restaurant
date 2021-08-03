@@ -1,34 +1,54 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import '../App.css'
 
-const Navigation = (props) => {
+const NavBar = (props) => {
+
+    const linkStyle = {
+        width: '100px',
+        margin: '0 6px 6px',
+        TextDecoration: 'none',
+        color: 'black',
+        align: 'center',
+        position: 'relative'
+    }
+
     
     if (props.loggedIn){
         return (
             <div>
                 <h1>Hello {props.user.name}</h1>
-                <hr/>
                 <button onClick={props.logout}>Logout</button>
-                <Link to="/shows">
-                    <button>Shows</button>
-                </Link>
+                <hr/>
+                
+                <NavLink to="/menu">
+                    <button className={"this"}>Menu</button>
+                </NavLink>
+                <NavLink to="/order" style={linkStyle}>
+                    <button>Your Order</button>
+                </NavLink>
             </div>
         )
     } else {
         return (
             <div>
                 <br/>
-                <Link to="/signup">
-                    <button>Signup</button>
-                </Link>
-                <br/>
-                <Link to="/login">
-                    <button>Login</button>
-                </Link>
+                <NavLink to="/signup" style={linkStyle}>
+                    Signup
+                </NavLink>
+                <NavLink to="/login" style={linkStyle}>
+                    Login
+                </NavLink>
+                <NavLink to="/menu" style={linkStyle}>
+                    Menu
+                </NavLink>
+                <NavLink to="/order" style={linkStyle}>
+                    Your Order
+                </NavLink>
                 <hr/>
             </div>
         )
     }
 }
 
-export default Navigation
+export default NavBar

@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     end
 
     def create
-        item = Items.create(item_params)
+        item = Item.create(item_params)
         if item.valid?
             render json: item, status: :created
         else

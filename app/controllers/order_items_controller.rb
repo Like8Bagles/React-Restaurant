@@ -1,32 +1,28 @@
-class OrdersController < ApplicationController
-    skip_before_action :authorize, only: :create
+class OrderItemsController < ApplicationController
+    skip_before_action :authorize
 
     def index
         user = find_user
-        orders = user.orders
-        render json: orders
-    end
-
-    def last
-        user = find_user
         order = user.orders.last
-        render json: order
+        order_items = order.order_items
+        render json: order_items
     end
 
     def show
         user = find_user
-        order = user.orders.find_by(id: params[:id])
-        render json: order
+        order_item = user.orders.first.order_items.find_by(id: params[:id])
+        render json: order_item
     end
 
     def create
         user = find_user
-        order = user.orders.create(order_params)
+        order = user.orders.last
+        # byebug
+        order_item = order.order_items.create(order_item_params)
         if order.valid?
-            render json: order, status: :created
-            byebug
+            render json: order_item, status: :created
         else
-            render json: { errors: order.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: order_item.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -46,9 +42,11 @@ class OrdersController < ApplicationController
 
     private
     
-    def order_params
-        params.permit(:order_name, :order_item_id)
+    def order_item_params
+        params.permit(:quantity, :order_id, :item_id)
     end
+
+
 
     def find_user
         User.find_by(id: session[:user_id])
