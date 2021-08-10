@@ -47,7 +47,10 @@ class OrdersController < ApplicationController
     private
     
     def order_params
-        params.permit(:order_name, :order_item_id)
+        params.permit(:order_name, order_items_attributes: [
+            :item_id,
+            :quantity
+        ])
     end
 
     def find_user

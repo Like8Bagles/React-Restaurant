@@ -19,11 +19,14 @@ const Order = (props) => {
             }else {
                 setOrder([...data])
                 console.log(order)
-                setItemId(data.map(o => o.item_id))
+                setItemId(data.map(o => {return{
+                    id: o.item_id,
+                    quantity: o.quantity
+                }}))
                 setOrderId(data.map(o => o.order_id))
             }
         })
-        fetch(`/items/${itemId}`)
+        fetch(`/items/${itemId.id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -35,7 +38,7 @@ const Order = (props) => {
     console.log(total_price)
 
     const errorList = errors.map(e => <ul>{e}</ul>)
-    const orderList = items.map(i => <b>{i.name} <br/> {i.price}</b>)
+    const orderList = items.map(i => <li><b>{i.name}</b> <br/> <b>${i.price} (each)</b> </li>)
 
     return (
         <div>

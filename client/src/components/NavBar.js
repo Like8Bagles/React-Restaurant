@@ -19,13 +19,13 @@ const NavBar = (props) => {
             <div>
                 <h1>Hello {props.user.name}</h1>
                 <button onClick={props.logout}>Logout</button>
+                <NavLink to="/saved_orders">
+                    <button>Saved Orders</button>
+                </NavLink>
                 <hr/>
                 
                 <NavLink to="/menu">
                     <button className={"this"}>Menu</button>
-                </NavLink>
-                <NavLink to="/order" style={linkStyle}>
-                    <button>Your Order</button>
                 </NavLink>
             </div>
         )

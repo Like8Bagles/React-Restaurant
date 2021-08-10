@@ -2,52 +2,56 @@ import React, {useState} from 'react'
 
 const MenuItem = (props) => {
 
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState(0)
 
-    const handleSubmit = (e) => {
+    const handleChange = (e) => {
         e.preventDefault()
-        fetch("/orders", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({order_name: "temp"})
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        })
-        const id = props.item_id
-        props.order({
-            quantity: quantity,
-            item_id: id
+        setQuantity(e.target.value)
+        props.changeTheQuantity({
+            quantity: parseInt(e.target.value), 
+            item_id: parseInt(e.target.id)
         })
     }
 
-    return (
+    if(props.loggedIn) {
+        return (
         <div>
             <ul className={"menu_items"} id={props.item_id}>
                 <b>{props.name}    </b>
                 <br/>
                 <b>${props.price}  </b>
                 <br/>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="number"
-                        id="quantity"
-                        defaultValue="1"
-                        value={quantity}
-                        onChange={(e) => setQuantity(e.target.value)}
-                    />
-                    <button type="submit">
-                        Order
-                    </button>
-                </form>
-                
+                <input
+                    type="number"
+                    id={props.item_id}
+                    defaultValue="0"
+                    value={quantity}
+                    // onChange={(e) => props.changeTheQuantity(e.target)}
+                    onChange={handleChange}
+                />
+
                 <br/>
             </ul>
         </div>
-    )
+        )
+    }
+    else{
+        return (
+            <div>
+                <ul className={"menu_items"} id={props.item_id}>
+                    <b>{props.name}    </b>
+                    <br/>
+                    <b>${props.price}  </b>
+                    <br/>
+                </ul>
+            </div>
+        )
+    }
 }
+
+// if(quantity != 0) {
+//    setQuantity(i.quantity)
+//    setItemId()
+//}
 
 export default MenuItem

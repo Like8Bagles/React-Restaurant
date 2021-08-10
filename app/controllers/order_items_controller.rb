@@ -3,23 +3,27 @@ class OrderItemsController < ApplicationController
 
     def index
         user = find_user
-        order = user.orders.last
-        order_items = order.order_items
+        if params[:order_id]
+            order = user.orders.last
+            order_items = order.order_items
+        else
+            order_items = OrderItem.all
+        end
         render json: order_items
     end
 
     def show
         user = find_user
-        order_item = user.orders.first.order_items.find_by(id: params[:id])
+        order_item = user.orders.last.order_items.find_by(id: params[:id])
         render json: order_item
     end
 
     def create
         user = find_user
         order = user.orders.last
-        # byebug
+        byebug
         order_item = order.order_items.create(order_item_params)
-        if order.valid?
+        if order_item.valid?
             render json: order_item, status: :created
         else
             render json: { errors: order_item.errors.full_messages }, status: :unprocessable_entity
@@ -43,7 +47,7 @@ class OrderItemsController < ApplicationController
     private
     
     def order_item_params
-        params.permit(:quantity, :order_id, :item_id)
+        params.permit(:quantity, :item_id, :order_id)
     end
 
 

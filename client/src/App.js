@@ -7,6 +7,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Menu from './containers/Menu';
 import Order from './containers/Order';
+import OrderComplete from './containers/OrderComplete';
+import SavedOrders from './containers/SavedOrders';
 
 function App() {
 
@@ -58,10 +60,6 @@ function App() {
     })
     history.push('/')
   }
-
-  const currentOrder = (data) => {
-    setOrder([...order, data])
-  }
   
   return (
     <div className="App">
@@ -71,8 +69,10 @@ function App() {
         <Route exact path="/signup" render={routerProps => <Signup {...routerProps} errors={errors} user={user} loginUser={login} logout={logout} />} />
         <Route exact path="/login" render={routerProps => <Login {...routerProps} loginUser={login} logout={logout} />} />
         <section>
-          <Route exact path="/menu" currentOrder={currentOrder} id={orderId} component={Menu} />
-          <Route exact path="/order" currentOrder={currentOrder} id={orderId} order={order} component={Order} />
+          <Route exact path="/menu" render={routerProps => <Menu {...routerProps} loggedIn={loggedIn} id={orderId} />} />
+          <Route exact path="/order" render={routerProps => <Order {...routerProps} id={orderId} order={order} />} />
+          <Route exact path="/order_complete" component={OrderComplete} />
+          <Route exact path="/saved_orders" component={SavedOrders} />
         </section>
       </Switch>
     </div>

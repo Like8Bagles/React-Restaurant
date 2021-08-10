@@ -1,18 +1,30 @@
 import React, {useState} from 'react'
+import { useHistory } from 'react-router-dom';
 
 const SubmitOrder = (props) => {
 
     const [orderName, setOrderName] = useState("")
+    const [allItems, setAllItems] = useState([])
     const [errors, setErrors] = useState([])
     const [order, setOrder] = useState([])
+    const history = useHistory()
    
     const handleSubmit = () => {
+
+        
+        // const itemsList = allItems.map(i => {return{item_id: i.id, quantity: i.quantity}})
+        // [{item_id: 5, quantity: 2}, {item_id: 7, quantity: 1}]
         fetch("/orders", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(orderName)
+            body: JSON.stringify({
+                // order: {
+                //     order_name: orderName,
+                //     order_items_attributes: itemsList
+                // }
+            })
         })
         .then(res => res.json())
         .then(data => {
@@ -21,17 +33,19 @@ const SubmitOrder = (props) => {
                 setErrors(data.errors)
             } else{
                 setOrder(data)
+                history.push("/order_complete")
             }
         })
+        
     }
 
 
     return (
         <div>
-            <p>The total price will be</p>
-            {props.totalPrice}
+            <p className="price">The total price will be:</p>
+            <b>${props.totalPrice}</b>
             
-            <form classname="price"onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <p>Please type in what you would like to name this order</p>
                 <label>Name:  </label>
                 <input
