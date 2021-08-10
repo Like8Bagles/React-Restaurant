@@ -3,12 +3,12 @@
 # Restaurant Template
  
 ## Description
- This is a template for use as restaurant website
- On startup the user will find themselves at a Home page
- From here if the user already has an account the can login and if not they can signup.
- The menu is always available
- Once logged in the use can create and name an order from the items on the menu
- From here the user can view their past orders 
+ - This is a template for use as restaurant website
+ -- On startup the user will find themselves at a Home page
+ -- From here if the user already has an account the can login and if not they can signup.
+ -- The menu is always available
+ -- Once logged in the use can create and name an order from the items on the menu
+ -- From here the user can view their past orders 
 
 ## Installation
     1. Fork and clone this repo
